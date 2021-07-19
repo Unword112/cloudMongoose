@@ -1,4 +1,4 @@
-const category = require('../models/category');
+const Category = require('../models/category');
 
 exports.create = ( req, res) => {
     console.log("req.body", req.body);
@@ -14,5 +14,16 @@ exports.create = ( req, res) => {
         res.json({
             category
         })
+    })
+}
+
+exports.list = (req, res) => {
+    Category.find({}).exec((err, data) => {
+        if(err){
+            return res.status(400).json({
+                err
+            })
+        }
+        res.json(data);
     })
 }

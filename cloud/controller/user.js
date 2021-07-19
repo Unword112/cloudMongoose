@@ -18,8 +18,15 @@ exports.signup = (req , res) => {
     })
 }
 
-exports.user = (req , res) => {
-    res.send("Hello Nathakith");
+exports.users = (req , res) => {
+    User.find({}).exec((err, data) => {
+        if(err) {
+            return res.status(400).json({
+                err
+            })
+        }
+        res.json(data);
+    })
 }
 
 exports.profile = (req , res) => {
